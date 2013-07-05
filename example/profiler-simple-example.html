@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>jPrifile Examples: Profiler: Simple Profiling Example</title>
+    
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+<script type="text/javascript" src="../js/jprofiler-min.js"></script>
+
+</head>
+<body>
+
+Please click "F12" to open the console to see the results.
+<script type="text/javascript">
+    //object with method to profile
+    var MathHelper = {    
+        factorial : function (num){
+            if (num > 1) {
+                return num * MathHelper.factorial(num-1);
+            } else {
+                return 1;
+            }
+        }    
+    };
+    
+    //register the function
+    jProfiler.registerFunction("MathHelper.factorial",MathHelper);
+   
+    MathHelper.factorial(1000);
+    
+    jProfiler.unregisterFunction("MathHelper.factorial");
+
+    jProfiler.showReport();
+    //output
+    //MathHelper.factorial(): Called 1000 times. Avg: 0.6060000000000006, Min: 0, Max: 1 
+
+</script>	
+</div>
+
+
+
+</body>
+</html>
